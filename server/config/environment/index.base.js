@@ -19,7 +19,7 @@ let all = {
   port: process.env.PORT || 9004,
   mongo: {
     uri: 'mongodb://' + mongoHost + '/develop',
-    prefix: 'pu_commerce_',
+    prefix: 'pu_payment_',
     options: {
       user: 'pudevelop',
       pass: 'xEbiMFBtX48ObFgC',
@@ -38,18 +38,11 @@ let all = {
     port: 13835,
     key: 'JF06f7FJjTDkNOcM1sdywWw5CZBHW4Jy'
   },
-  sequence: {
-    functionName: 'sequence-dev:5',
-    db: '1',
-    host: 'develop.rd7ge9.ng.0001.use1.cache.amazonaws.com',
-    port: '6379'
-  },
   logger: {
     projectId: 'gothic-talent-192920',
     logName: 'pu-product-dev-log',
     metadata: {resource: {type: 'global'}}
   },
-  encryptKey: 'PZ3oXv2v6Pq5HAPFI9NFbQ==',
   api: {
     organization: {
       url: 'http://localhost:9002/api/v1/organization'
