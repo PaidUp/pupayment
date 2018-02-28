@@ -8,6 +8,6 @@ export default function (app) {
   app.use('/api/v1/payment', api)
 
   app.route('/*').get(function (request, response) {
-    response.status(200).json({ PU: 'Commerce!!!' })
+    response.status(200).json({ PU: 'Payment!!!' })
   })
 }
