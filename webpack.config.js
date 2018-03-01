@@ -35,7 +35,7 @@ let wpc = {
   },
   plugins: [
     new NodemonPlugin({
-      nodeArgs: ['--inspect=0.0.0.0:9227']
+      nodeArgs: ['--inspect=0.0.0.0:9226']
     })
   ]
 }

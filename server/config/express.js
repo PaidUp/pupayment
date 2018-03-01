@@ -10,7 +10,7 @@ import morgan from 'morgan'
 import errorhandler from 'errorhandler'
 // import mongoose from 'mongoose'
 // import { Logger } from 'pu-common'
-var pmx = require('pmx')
+import pmx from 'pmx'
 
 export default function (app) {
   app.use(compression())
