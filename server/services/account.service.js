@@ -1,14 +1,8 @@
-import Stripe from './common/stripe'
-import config from '@/config/environment'
-let stripe
+import Service from './service'
 
-class AccountService {
-  constructor () {
-    stripe = new Stripe(config.stripe.key)
-  }
-
+class AccountService extends Service {
   createConnectAccount (payload) {
-    return stripe.createConnectAccount(payload)
+    return this.stripe.createConnectAccount(payload)
   }
 }
 

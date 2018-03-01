@@ -35,4 +35,5 @@ describe('loading express', function () {
   })
 
   importTest('account: /api/v1/payment/account ', './account');
+  importTest('customer: /api/v1/payment/customer ', './customer');
 })

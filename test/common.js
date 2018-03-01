@@ -44,6 +44,13 @@ let request = {
         currency: 'usd'
       }
     }
+  },
+  customer: {
+    payload: {
+      description: 'John Doe',
+      email: 'test@test.com',
+      paymentId: 'xxxxxxxx'
+    }
   }
 }
 
