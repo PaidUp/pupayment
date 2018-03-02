@@ -27,5 +27,11 @@ module.exports = {
     organization: {
       url: 'https://devapi.getpaidup.com/api/v1/organization'
     }
+  },
+  plaid: {
+    env: 'sandbox',
+    publicKey: '5a537132a52c4ead4feab6358c62eb',
+    clientId: '5a996f6b8d92392ce8b1fa38',
+    secret: '6da166d1a6e3bfdc3032ce32b5924d'
   }
 }

@@ -1,10 +1,11 @@
 import Stripe from './common/stripe'
+import Plaid from './common/plaid'
 import config from '@/config/environment'
 
-let stripe = new Stripe(config.stripe.key)
-
+let plaid = new Plaid(config.plaid)
 export default class Service {
   constructor () {
-    this.stripe = stripe
+    this.stripe = new Stripe(config.stripe.key)
+    this.plaid = plaid
   }
 }

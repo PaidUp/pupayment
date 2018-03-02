@@ -10,7 +10,16 @@ class CusotmerService extends Service {
   }
 
   associateCard ({customerId, token}) {
-    return this.stripe.associateCard(customerId, token)
+    return this.stripe.createSource(customerId, token)
+  }
+
+  associateBank ({customerId, publicToken, accountId}) {
+    return this.plaid.exchangePublicToken(publicToken)
+      .then(resExchangeToken => {
+        return this.plaid.createStripeToken(resExchangeToken.access_token, accountId)
+      }).then(token => {
+        return this.stripe.createSource(customerId, token)
+      })
   }
 
   listCards (customerId) {

@@ -78,10 +78,9 @@ it('DELETE# / remove a card', done => {
       cardId: common.results.card.id
     })
     .end((err, res) => {
-      console.log(res.body)
       res.should.have.status(200)
-      // res.body.should.have.property('object')
-      // res.body.data.should.to.be.an('array')
+      res.body.should.have.property('deleted')
+      res.body.deleted.should.equal(true)
       done()
     })
 })

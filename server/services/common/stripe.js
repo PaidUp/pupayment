@@ -25,7 +25,7 @@ export default class Stripe {
     })
   }
 
-  associateCard (customerId, token) {
+  createSource (customerId, token) {
     return new Promise((resolve, reject) => {
       this.stripe.customers.createSource(
         customerId,

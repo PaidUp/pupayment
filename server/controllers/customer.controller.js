@@ -12,7 +12,33 @@ export default class AccountCotroller {
   }
 
   static associateCard (req, res) {
-    customerService.associateCard(req.body)
+    let { customerId, token } = req.body
+    if (!customerId) {
+      return HR.error(res, 'customerId is required', 422)
+    }
+    if (!token) {
+      return HR.error(res, 'token is required', 422)
+    }
+    customerService.associateCard({ customerId, token })
+      .then(data => {
+        return HR.send(res, data)
+      }).catch(reason => {
+        return HR.error(res, reason)
+      })
+  }
+
+  static associateBank (req, res) {
+    let { customerId, publicToken, accountId } = req.body
+    if (!customerId) {
+      return HR.error(res, 'customerId is required', 422)
+    }
+    if (!publicToken) {
+      return HR.error(res, 'publicToken is required', 422)
+    }
+    if (!accountId) {
+      return HR.error(res, 'accountId is required', 422)
+    }
+    customerService.associateBank({ customerId, publicToken, accountId })
       .then(data => {
         return HR.send(res, data)
       }).catch(reason => {
