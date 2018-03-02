@@ -50,6 +50,12 @@ let all = {
   },
   stripe: {
     key: 'sk_test_wE4QBHe2SZH9wZ6uMZliup0g'
+  },
+  plaid: {
+    env: 'sandbox',
+    publicKey: '5a537132a52c4ead4feab6358c62eb',
+    clientId: '5a996f6b8d92392ce8b1fa38',
+    secret: '6da166d1a6e3bfdc3032ce32b5924d'
   }
 }
 
