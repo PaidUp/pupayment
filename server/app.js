@@ -22,7 +22,6 @@ pmx.init({
 })
 
 const app = express()
-// const server = http.createServer(app)
 configExpress(app)
 routes(app)
 
