@@ -43,11 +43,6 @@ let all = {
     logName: 'pu-product-dev-log',
     metadata: {resource: {type: 'global'}}
   },
-  api: {
-    organization: {
-      url: 'http://localhost:9002/api/v1/organization'
-    }
-  },
   stripe: {
     key: 'sk_test_wE4QBHe2SZH9wZ6uMZliup0g'
   },
