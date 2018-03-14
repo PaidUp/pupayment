@@ -1,8 +1,7 @@
 process.env.NODE_ENV = 'test'
-
+let axios = require('axios')
 let common = require('./common')
 let server = common.server
-let token = common.token
 let chai = common.chai
 
 function importTest(name, path) {
@@ -12,10 +11,10 @@ function importTest(name, path) {
 }
 
 describe('loading express', function () {
-  before(function (done) {
+  before(function (done) { 
     setTimeout(() => {
       done()
-    }, 4000)
+    }, 6000)
   })
 
   after(function () {

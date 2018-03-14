@@ -1,14 +1,13 @@
 let common = require('./common')
 let customerService = require('../server/services/customer.service').default
 let server = common.server
-let token = common.token
 let chai = common.chai
 
 it('POST# / create a customer', done => {
   chai
     .request(server)
     .post('/api/v1/payment/customer')
-    .set('authorization', token)
+    .set('authorization', common.token())
     .send(common.request.customer.payload)
     .end((err, res) => {
       res.should.have.status(200)
@@ -24,7 +23,7 @@ it('POST# / create a customer with credit card', done => {
     chai
     .request(server)
     .post('/api/v1/payment/customer')
-    .set('authorization', token)
+    .set('authorization', common.token())
     .send(common.request.customer.payload)
     .end((err, res) => {
       res.should.have.status(200)
@@ -41,7 +40,7 @@ it('POST# / create credit card', done => {
     chai
     .request(server)
     .post('/api/v1/payment/customer/card')
-    .set('authorization', token)
+    .set('authorization', common.token())
     .send({
       customerId: common.results.account2.id,
       token: tk.id
@@ -59,7 +58,7 @@ it('GET# / list customer cards', done => {
   chai
     .request(server)
     .get(`/api/v1/payment/customer/${common.results.account2.id}/cards`)
-    .set('authorization', token)
+    .set('authorization', common.token())
     .end((err, res) => {
       res.should.have.status(200)
       res.body.should.have.property('object')
@@ -72,7 +71,7 @@ it('DELETE# / remove a card', done => {
   chai
     .request(server)
     .delete(`/api/v1/payment/customer/card`)
-    .set('authorization', token)
+    .set('authorization', common.token())
     .send({
       customerId: common.results.account2.id,
       cardId: common.results.card.id
@@ -89,7 +88,7 @@ it('GET# / list customer banks', done => {
   chai
     .request(server)
     .get(`/api/v1/payment/customer/${common.results.account2.id}/banks`)
-    .set('authorization', token)
+    .set('authorization', common.token())
     .end((err, res) => {
       res.should.have.status(200)
       res.body.should.have.property('object')

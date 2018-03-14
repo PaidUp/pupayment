@@ -47,7 +47,11 @@ export default class AccountCotroller {
   }
 
   static listCards (req, res) {
-    customerService.listCards(req.params.customerId)
+    const customerId = req.params.customerId
+    if (!customerId) {
+      return HR.error(res, 'customerId is required', 422)
+    }
+    customerService.listCards(customerId)
       .then(data => {
         return HR.send(res, data)
       }).catch(reason => {
@@ -65,7 +69,11 @@ export default class AccountCotroller {
   }
 
   static listBanks (req, res) {
-    customerService.listBanks(req.params.customerId)
+    const customerId = req.params.customerId
+    if (!customerId) {
+      return HR.error(res, 'customerId is required', 422)
+    }
+    customerService.listBanks(customerId)
       .then(data => {
         return HR.send(res, data)
       }).catch(reason => {
