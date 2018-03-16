@@ -26,7 +26,7 @@ class CusotmerService extends Service {
     return this.stripe.listCards(customerId)
   }
 
-  deleteCard ({customerId, cardId}) {
+  deleteCard (customerId, cardId) {
     return this.stripe.deleteCard(customerId, cardId)
   }
 
@@ -34,7 +34,7 @@ class CusotmerService extends Service {
     return this.stripe.listBanks(customerId)
   }
 
-  deleteBank ({customerId, bankId}) {
+  deleteBank (customerId, bankId) {
     return this.stripe.deleteBank(customerId, bankId)
   }
 }
