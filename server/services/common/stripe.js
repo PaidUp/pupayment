@@ -29,7 +29,7 @@ export default class Stripe {
     return new Promise((resolve, reject) => {
       this.stripe.customers.createSource(
         customerId,
-        { source: 'tok_mastercard' },
+        { source: token },
         (err, card) => {
           if (err) return reject(err)
           resolve(card)
