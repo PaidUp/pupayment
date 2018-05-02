@@ -67,10 +67,10 @@ it('GET# / list customer cards', done => {
     })
 })
 
-it('DELETE# / remove a card', done => {
+it('PUT# / remove a card', done => {
   chai
     .request(server)
-    .delete(`/api/v1/payment/customer/card`)
+    .put(`/api/v1/payment/customer/card`)
     .set('authorization', common.token())
     .send({
       customerId: common.results.account2.id,

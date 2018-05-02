@@ -11,6 +11,7 @@ it('POST# / create an account', done => {
     .set('authorization', common.token())
     .send(common.request.account.payload)
     .end((err, res) => {
+      console.log("err: ", err)
       res.should.have.status(200)
       res.body.should.have.property('id')
       common.results.account = res.body
