@@ -18,6 +18,7 @@ class CusotmerService extends Service {
       .then(resExchangeToken => {
         return this.plaid.createStripeToken(resExchangeToken.access_token, accountId)
       }).then(token => {
+        console.log('token: ', token)
         return this.stripe.createSource(customerId, token)
       })
   }
