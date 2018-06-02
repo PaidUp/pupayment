@@ -2,7 +2,7 @@
 ec2-35-172-193-36.compute-1.amazonaws.com     ansible_connection=ssh        ansible_user=ubuntu     ansible_ssh_private_key_file=/Users/riclara/.ssh/develop-env.pem
 
 [stage]
-ec2-34-227-48-176.compute-1.amazonaws.com     ansible_connection=ssh        ansible_user=ubuntu     ansible_ssh_private_key_file=/Users/riclara/.ssh/develop-env.pem
+ec2-34-227-48-176.compute-1.amazonaws.com     ansible_connection=ssh        ansible_user=ubuntu     ansible_ssh_private_key_file=/Users/riclara/.ssh/stage-env.pem
 
 [production]
-#app.getpaidup.com     ansible_connection=ssh        ansible_user=jenkins
+ec2-184-73-91-204.compute-1.amazonaws.com     ansible_connection=ssh        ansible_user=ubuntu     ansible_ssh_private_key_file=/Users/riclara/.ssh/production-env.pem
