@@ -9,6 +9,6 @@ router.post('/bank', auth.validate, CustomerController.associateBank)
 router.get('/:customerId/cards', auth.validate, CustomerController.listCards)
 router.get('/:customerId/banks', auth.validate, CustomerController.listBanks)
 router.put('/card', auth.validate, CustomerController.deleteCard)
-router.delete('/bank', auth.validate, CustomerController.deleteBank)
+router.put('/bank', auth.validate, CustomerController.deleteBank)
 
 export default router
