@@ -95,4 +95,22 @@ export default class Stripe {
       )
     })
   }
+
+  refund (chargeId, reason, amount) {
+    let params = {
+      charge: chargeId,
+      metadata: { comment: reason },
+      refund_application_fee: true,
+      reverse_transfer: true,
+      amount: amount * 100
+    }
+    return new Promise((resolve, reject) => {
+      this.stripe.refunds.create(params, function (err, refund) {
+        if (err) {
+          return reject(err)
+        }
+        return resolve(refund)
+      })
+    })
+  }
 }

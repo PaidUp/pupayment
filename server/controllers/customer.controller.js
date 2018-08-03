@@ -62,4 +62,15 @@ export default class AccountCotroller {
       .then(data => HR.send(res, data))
       .catch(reason => HR.error(res, reason))
   }
+
+  static refund (req, res) {
+    let { chargeId, reason, amount } = req.body
+    if (!chargeId) return HR.error(res, 'chargeId is required', 422)
+    if (!reason) return HR.error(res, 'reason is required', 422)
+    if (!amount) return HR.error(res, 'amount is required', 422)
+    let price = Number(amount)
+    customerService.refund(chargeId, reason, price)
+      .then(data => HR.send(res, data))
+      .catch(reason => HR.error(res, reason))
+  }
 }

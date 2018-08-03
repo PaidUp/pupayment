@@ -10,5 +10,6 @@ router.get('/:customerId/cards', auth.validate, CustomerController.listCards)
 router.get('/:customerId/banks', auth.validate, CustomerController.listBanks)
 router.put('/card', auth.validate, CustomerController.deleteCard)
 router.put('/bank', auth.validate, CustomerController.deleteBank)
+router.put('/refund', auth.validate, CustomerController.refund)
 
 export default router

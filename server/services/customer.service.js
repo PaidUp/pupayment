@@ -37,6 +37,10 @@ class CusotmerService extends Service {
   deleteBank (customerId, bankId) {
     return this.stripe.deleteBank(customerId, bankId)
   }
+
+  refund (chargeId, reason, amount) {
+    return this.stripe.refund(chargeId, reason, amount)
+  }
 }
 
 let cusotmerService = new CusotmerService()
