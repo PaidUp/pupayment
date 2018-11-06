@@ -4,8 +4,6 @@ import production from './production'
 import test from './test'
 import stage from './stage'
 
-const mongoHost = 'pu-dev-shard-00-00-4nodg.mongodb.net:27017,pu-dev-shard-00-01-4nodg.mongodb.net:27017,pu-dev-shard-00-02-4nodg.mongodb.net:27017'
-
 const envs = {
   develop,
   production,
@@ -18,19 +16,8 @@ const envs = {
 let all = {
   port: process.env.PORT || 9004,
   mongo: {
-    uri: 'mongodb://' + mongoHost + '/develop',
-    prefix: 'pu_payment_',
-    options: {
-      user: 'pudevelop',
-      pass: 'xEbiMFBtX48ObFgC',
-      ssl: true,
-      replicaSet: 'pu-dev-shard-0',
-      authSource: 'admin',
-      autoIndex: false, // Don't build indexes
-      reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-      reconnectInterval: 1000, // Reconnect every 500ms
-      poolSize: 5 // Maintain up to 10 socket connections
-    }
+    url: 'mongodb+srv://pudevelop:xEbiMFBtX48ObFgC@pu-dev-4nodg.mongodb.net/develop?retryWrites=true',
+    prefix: 'pu_payment_'
   },
   auth: {
     credential: 'puproduct-secret',
@@ -44,7 +31,11 @@ let all = {
     metadata: {resource: {type: 'global'}}
   },
   stripe: {
-    key: 'sk_test_wE4QBHe2SZH9wZ6uMZliup0g'
+    key: 'sk_test_wE4QBHe2SZH9wZ6uMZliup0g',
+    webhooks: {
+      transfers: 'whsec_6H1Bc9BPK0hLYcy45JRKCyc9Vmo82hCh',
+      payouts: 'whsec_ixJiCY3fIr4UE3DyaEc70YPuCWrtzUjP'
+    }
   },
   plaid: {
     env: 'sandbox',

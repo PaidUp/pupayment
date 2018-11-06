@@ -113,4 +113,32 @@ export default class Stripe {
       })
     })
   }
+
+  fetchTransfer (transferId) {
+    return new Promise((resolve, reject) => {
+      this.stripe.transfers.retrieve(transferId, {
+        expand: ['destination_payment', 'balance_transaction', 'source_transaction']
+      },
+      (err, transfer) => {
+        if (err) return reject(err)
+        resolve(transfer)
+      })
+    })
+  }
+
+  fetchPayout (payoutId) {
+    return new Promise((resolve, reject) => {
+      this.stripe.payouts.retrieve(payoutId, {
+        expand: ['balance_transaction', 'destination']
+      },
+      (err, payout) => {
+        if (err) return reject(err)
+        resolve(payout)
+      })
+    })
+  }
+
+  getEvent (secret, sig, body) {
+    return this.stripe.webhooks.constructEvent(body, sig, secret)
+  }
 }

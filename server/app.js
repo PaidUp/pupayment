@@ -1,6 +1,6 @@
 import pmx from 'pmx'
 import express from 'express'
-// import mongoose from 'mongoose'
+import mongo from './util/mongo'
 import config from './config/environment'
 import configExpress from './config/express'
 import routes from './routes'
@@ -26,14 +26,10 @@ configExpress(app)
 routes(app)
 
 // Start server
-var server = app.listen(config.port, config.ip, function () {
-  // mongoose.connect(config.mongo.uri, config.mongo.options, error => {
-  //   if (error) {
-  //     return Logger.error(error)
-  //   }
-  //   Logger.info('Connected to database')
-  // })
-  Logger.info(`pu-payment listening on ${config.port}, in ${app.get('env')} mode`)
+mongo.connect(config.mongo).then(() => {
+  app.listen(config.port, config.ip, function () {
+    Logger.info(`pu-payment listening on ${config.port}, in ${app.get('env')} mode`)
+  })
 })
 
 process.on('exit', (cb) => {
@@ -52,4 +48,4 @@ process.on('uncaughtException', (err) => {
   }
 })
 
-export default server
+// export default server
