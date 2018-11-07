@@ -5,7 +5,7 @@ let chai = common.chai
 
 it('POST# / create a customer', done => {
   chai
-    .request(server)
+    .request(server())
     .post('/api/v1/payment/customer')
     .set('authorization', common.token())
     .send(common.request.customer.payload)
@@ -21,7 +21,7 @@ it('POST# / create a customer with credit card', done => {
   customerService.generateCardToken({number: '4111111111111111', expMonth: '12', expYear: '2021', cvc: '123'}).then(tk => {
     common.request.customer.payload.source = tk.id
     chai
-    .request(server)
+    .request(server())
     .post('/api/v1/payment/customer')
     .set('authorization', common.token())
     .send(common.request.customer.payload)
@@ -38,7 +38,7 @@ it('POST# / create a customer with credit card', done => {
 it('POST# / create credit card', done => {
   customerService.generateCardToken({number: '4111111111111111', expMonth: '12', expYear: '2022', cvc: '123'}).then(tk => {
     chai
-    .request(server)
+    .request(server())
     .post('/api/v1/payment/customer/card')
     .set('authorization', common.token())
     .send({
@@ -56,7 +56,7 @@ it('POST# / create credit card', done => {
 
 it('GET# / list customer cards', done => {
   chai
-    .request(server)
+    .request(server())
     .get(`/api/v1/payment/customer/${common.results.account2.id}/cards`)
     .set('authorization', common.token())
     .end((err, res) => {
@@ -69,7 +69,7 @@ it('GET# / list customer cards', done => {
 
 it('PUT# / remove a card', done => {
   chai
-    .request(server)
+    .request(server())
     .put(`/api/v1/payment/customer/card`)
     .set('authorization', common.token())
     .send({
@@ -86,7 +86,7 @@ it('PUT# / remove a card', done => {
 
 it('GET# / list customer banks', done => {
   chai
-    .request(server)
+    .request(server())
     .get(`/api/v1/payment/customer/${common.results.account2.id}/banks`)
     .set('authorization', common.token())
     .end((err, res) => {

@@ -14,17 +14,17 @@ describe('loading express', function () {
   before(function (done) { 
     setTimeout(() => {
       done()
-    }, 6000)
+    }, 3000)
   })
 
   after(function () {
-    server.close()
+    server().close()
   })
 
   describe('/GET root', () => {
     it('it should GET status 200', done => {
       chai
-        .request(server)
+        .request(server())
         .get('/')
         .end((err, res) => {
           res.should.have.status(200)

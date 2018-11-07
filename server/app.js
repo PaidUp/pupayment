@@ -26,8 +26,9 @@ configExpress(app)
 routes(app)
 
 // Start server
+let server
 mongo.connect(config.mongo).then(() => {
-  app.listen(config.port, config.ip, function () {
+  server = app.listen(config.port, config.ip, function () {
     Logger.info(`pu-payment listening on ${config.port}, in ${app.get('env')} mode`)
   })
 })
@@ -48,4 +49,4 @@ process.on('uncaughtException', (err) => {
   }
 })
 
-// export default server
+export default () => { return server }
