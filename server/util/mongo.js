@@ -23,4 +23,10 @@ export default class Mongo {
   static getCollection (name) {
     return Mongo.client.db(db).collection(prefix + name)
   }
+  static get collections () {
+    return {
+      transfers: this.getCollection('transfers'),
+      payouts: this.getCollection('payouts')
+    }
+  }
 }
