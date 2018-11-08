@@ -20,10 +20,14 @@ class WebhookService extends Service {
     })
   }
 
-  fetchTransfer (account, arrival) {
+  fetchTransfer (account, arrival, source) {
     return new Promise((resolve, reject) => {
       const collection = Mongo.collections.transfers
-      collection.find({'destination': account, 'balance_transaction.available_on': parseInt(arrival)}).toArray((err, result) => {
+      collection.find({
+        'destination': account,
+        'balance_transaction.available_on': parseInt(arrival),
+        'source_type': source
+      }).toArray((err, result) => {
         if (err) return reject(err)
         resolve(result)
       })

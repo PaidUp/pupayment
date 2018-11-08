@@ -15,10 +15,11 @@ export default class AccountCotroller {
   }
 
   static fetchTransfer (req, res) {
-    const { account, arrival } = req.params
+    const { account, arrival, source } = req.params
     if (!account) return HR.error(res, 'account is required', 422)
     if (!arrival) return HR.error(res, 'arrival is required', 422)
-    webhookService.fetchTransfer(account, arrival).then(data => {
+    if (!source) return HR.error(res, 'source is required', 422)
+    webhookService.fetchTransfer(account, arrival, source).then(data => {
       return HR.send(res, data)
     }).catch(reason => {
       return HR.error(res, reason.message)
