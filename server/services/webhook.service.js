@@ -54,7 +54,7 @@ class WebhookService extends Service {
   fetchPayout (account) {
     return new Promise((resolve, reject) => {
       const collection = Mongo.collections.payouts
-      collection.find({'destination.account': account}).toArray((err, result) => {
+      collection.find({'destination.account': account}).sort({arrival_date: -1}).toArray((err, result) => {
         if (err) return reject(err)
         resolve(result)
       })
