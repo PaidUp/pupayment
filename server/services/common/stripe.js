@@ -117,7 +117,7 @@ export default class Stripe {
   fetchTransfer (transferId) {
     return new Promise((resolve, reject) => {
       this.stripe.transfers.retrieve(transferId, {
-        expand: ['destination_payment', 'balance_transaction', 'source_transaction']
+        expand: ['destination_payment.application_fee.balance_transaction', 'source_transaction.application_fee.balance_transaction']
       },
       (err, transfer) => {
         if (err) return reject(err)
