@@ -25,7 +25,7 @@ class WebhookService extends Service {
       const collection = Mongo.collections.transfers
       collection.find({
         'destination': account,
-        'balance_transaction.available_on': parseInt(arrival),
+        'source_transaction.application_fee.balance_transaction.available_on': parseInt(arrival),
         'source_type': source
       }).toArray((err, result) => {
         if (err) return reject(err)
