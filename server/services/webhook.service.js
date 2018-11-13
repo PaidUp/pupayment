@@ -37,9 +37,8 @@ class WebhookService extends Service {
   savePayout (secret, signature, body) {
     return new Promise((resolve, reject) => {
       const event = this.stripe.getEvent(secret, signature, body)
-      console.log('event: ', event)
       const collection = Mongo.collections.payouts
-      this.stripe.fetchTransfer(event.data.object.id).then(payout => {
+      this.stripe.fetchPayout(event.data.object.id).then(payout => {
         collection.findOneAndReplace({ id: payout.id }, payout,
           { upsert: true }, (errdb, data) => {
             if (errdb) {
