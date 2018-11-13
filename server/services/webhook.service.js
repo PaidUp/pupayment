@@ -5,7 +5,6 @@ class WebhookService extends Service {
   saveTransfer (secret, signature, body) {
     return new Promise((resolve, reject) => {
       const event = this.stripe.getEvent(secret, signature, body)
-      console.log('event: ', event)
       if (event && !event.data.object.destination_payment.startsWith('py_')) resolve(true)
       const collection = Mongo.collections.transfers
       this.stripe.fetchTransfer(event.data.object.id).then(transfer => {
