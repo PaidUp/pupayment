@@ -102,7 +102,7 @@ export default class Stripe {
       metadata: { comment: reason },
       refund_application_fee: true,
       reverse_transfer: true,
-      amount: amount * 100
+      amount: parseInt(amount * 100)
     }
     return new Promise((resolve, reject) => {
       this.stripe.refunds.create(params, function (err, refund) {
