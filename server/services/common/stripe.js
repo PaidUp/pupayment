@@ -114,26 +114,36 @@ export default class Stripe {
     })
   }
 
-  fetchTransfer (transferId) {
+  fetchBalanceHistory (stripeAccount, payout, startingAfter) {
     return new Promise((resolve, reject) => {
-      this.stripe.transfers.retrieve(transferId, {
-        expand: ['destination_payment.application_fee.balance_transaction', 'source_transaction.application_fee.balance_transaction']
-      },
-      (err, transfer) => {
-        if (err) return reject(err)
-        resolve(transfer)
-      })
+      let params = {
+        payout,
+        limit: 100,
+        type: 'payment',
+        expand: ['data.source.source_transfer.source_transaction']
+      }
+      if (startingAfter) params.starting_after = startingAfter
+      this.stripe.balance.listTransactions(
+        params,
+        {stripe_account: stripeAccount},
+        (err, transfer) => {
+          if (err) return reject(err)
+          resolve(transfer)
+        })
     })
   }
 
-  fetchPayout (payoutId) {
+  fetchPayouts (stripeAccount, limit = 10, startingAfter) {
     return new Promise((resolve, reject) => {
-      this.stripe.payouts.retrieve(payoutId, {
-        expand: ['balance_transaction', 'destination']
+      this.stripe.payouts.list({
+        limit,
+        starting_after: startingAfter,
+        expand: ['data.balance_transaction', 'data.destination']
       },
-      (err, payout) => {
+      {stripe_account: stripeAccount},
+      (err, payouts) => {
         if (err) return reject(err)
-        resolve(payout)
+        resolve(payouts)
       })
     })
   }

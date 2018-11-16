@@ -1,6 +1,5 @@
 import pmx from 'pmx'
 import express from 'express'
-import mongo from './util/mongo'
 import config from './config/environment'
 import configExpress from './config/express'
 import routes from './routes'
@@ -26,15 +25,11 @@ configExpress(app)
 routes(app)
 
 // Start server
-let server
-mongo.connect(config.mongo).then(() => {
-  server = app.listen(config.port, config.ip, function () {
-    Logger.info(`pu-payment listening on ${config.port}, in ${app.get('env')} mode`)
-  })
+let server = app.listen(config.port, config.ip, function () {
+  Logger.info(`pu-payment listening on ${config.port}, in ${app.get('env')} mode`)
 })
 
 process.on('exit', (cb) => {
-  // mongoose.connection.close()
   console.log('bye......')
 })
 
