@@ -4,9 +4,9 @@ import { HandlerResponse as HR } from 'pu-common'
 export default class DepositCotroller {
   static fetchPayouts (req, res) {
     const stripeAccount = req.params.account
-    const { limit = 10, startingAfter } = req.query
+    const { limit = 10, startingAfter, endingBefore } = req.query
     if (!stripeAccount) return HR.error(res, 'account is required', 422)
-    depositService.fetchPayouts(stripeAccount, limit, startingAfter)
+    depositService.fetchPayouts({stripeAccount, limit, startingAfter, endingBefore})
       .then(data => {
         return HR.send(res, data)
       }).catch(reason => {

@@ -133,11 +133,13 @@ export default class Stripe {
     })
   }
 
-  fetchPayouts (stripeAccount, limit = 10, startingAfter) {
+  fetchPayouts ({stripeAccount, limit = 10, startingAfter, endingBefore}) {
     return new Promise((resolve, reject) => {
       this.stripe.payouts.list({
+        created: { gte: 1527811200 },
         limit,
         starting_after: startingAfter,
+        ending_before: endingBefore,
         expand: ['data.balance_transaction', 'data.destination']
       },
       {stripe_account: stripeAccount},

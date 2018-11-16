@@ -1,8 +1,8 @@
 import Service from './service'
 
 class DepositService extends Service {
-  fetchPayouts (stripeAccount, limit, startingAfter) {
-    return this.stripe.fetchPayouts(stripeAccount, limit, startingAfter)
+  fetchPayouts ({stripeAccount, limit, startingAfter, endingBefore}) {
+    return this.stripe.fetchPayouts({stripeAccount, limit, startingAfter, endingBefore})
   }
 
   async fetchBalanceHistory (stripeAccount, payout) {
@@ -14,7 +14,6 @@ class DepositService extends Service {
       result = result.concat(resp.data)
       hasMore = resp.has_more
     }
-    console.log('result: ', result)
     return result
   }
 }
