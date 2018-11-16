@@ -114,12 +114,12 @@ export default class Stripe {
     })
   }
 
-  fetchBalanceHistory (stripeAccount, payout, startingAfter) {
+  fetchBalanceHistory (stripeAccount, payout, type, startingAfter) {
     return new Promise((resolve, reject) => {
       let params = {
         payout,
         limit: 100,
-        type: 'payment',
+        type,
         expand: ['data.source.source_transfer.source_transaction']
       }
       if (startingAfter) params.starting_after = startingAfter
