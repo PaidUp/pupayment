@@ -73,4 +73,14 @@ export default class AccountCotroller {
       .then(data => HR.send(res, data))
       .catch(reason => HR.error(res, reason))
   }
+
+  static verifySource (req, res) {
+    let { customerId, sourceId, amounts } = req.body
+    if (!customerId) return HR.error(res, 'customerId is required', 422)
+    if (!sourceId) return HR.error(res, 'sourceId is required', 422)
+    if (!amounts) return HR.error(res, 'amounts is required', 422)
+    customerService.verifySource(customerId, sourceId, amounts)
+      .then(data => HR.send(res, data))
+      .catch(reason => HR.error(res, reason.message))
+  }
 }

@@ -153,4 +153,14 @@ export default class Stripe {
   getEvent (secret, sig, body) {
     return this.stripe.webhooks.constructEvent(body, sig, secret)
   }
+
+  verifySource (customerId, sourceId, amounts) {
+    return new Promise((resolve, reject) => {
+      this.stripe.customers.verifySource(customerId, sourceId,
+        { amounts }, (err, bankAccount) => {
+          if (err) return reject(err)
+          resolve(bankAccount)
+        })
+    })
+  }
 }

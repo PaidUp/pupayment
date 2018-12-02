@@ -41,6 +41,10 @@ class CusotmerService extends Service {
   refund (chargeId, reason, amount) {
     return this.stripe.refund(chargeId, reason, amount)
   }
+
+  verifySource (customerId, sourceId, amounts) {
+    return this.stripe.verifySource(customerId, sourceId, amounts)
+  }
 }
 
 let cusotmerService = new CusotmerService()
