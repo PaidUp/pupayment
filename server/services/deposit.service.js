@@ -5,12 +5,12 @@ class DepositService extends Service {
     return this.stripe.fetchPayouts({stripeAccount, limit, startingAfter, endingBefore})
   }
 
-  async fetchBalanceHistory (stripeAccount, payout, type) {
+  async fetchBalanceHistory (stripeAccount, payout) {
     let result = []
     let hasMore = true
     while (hasMore) {
       const startingAfter = result.length ? result[result.length - 1].id : null
-      const resp = await this.stripe.fetchBalanceHistory(stripeAccount, payout, type, startingAfter)
+      const resp = await this.stripe.fetchBalanceHistory(stripeAccount, payout, startingAfter)
       result = result.concat(resp.data)
       hasMore = resp.has_more
     }
