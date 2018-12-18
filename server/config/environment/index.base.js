@@ -27,7 +27,7 @@ let all = {
   },
   logger: {
     projectId: 'gothic-talent-192920',
-    logName: 'pu-product-dev-log',
+    logName: 'pu-payment-local-log',
     metadata: {resource: {type: 'global'}}
   },
   stripe: {
